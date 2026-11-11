@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>BE LIMITLESS | Parallex Bank</title>
+<meta name="theme-color" content="#0A1033">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&family=Figtree:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0A1033;--ink2:#141C52;--flame:#FF5B1F;--sun:#FFC233;--blue:#2F4BFF;--chalk:#FFF4E6;
+--form-bg:#FFF4E6;--form-ink:#0A1033;--field:#fff;--line:#dccfbd;--muted:#5b6080;--err:#C62828;
+--disp:"Bricolage Grotesque","Arial Narrow",Impact,sans-serif;--body:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--form-bg:#0E1642;--form-ink:#FFF4E6;--field:#18215A;--line:#2d3a85;--muted:#aab2e0;--err:#FF8A80;color-scheme:dark}}
+:root[data-theme="dark"]{--form-bg:#0E1642;--form-ink:#FFF4E6;--field:#18215A;--line:#2d3a85;--muted:#aab2e0;--err:#FF8A80;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px);background:var(--ink);scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--ink);color:var(--chalk);font:400 1rem/1.55 var(--body);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--sun);outline-offset:3px}
+.wrap{width:min(100% - 2.5rem,1080px);margin-inline:auto}
+
+/* Logo */
+.logo{display:inline-flex;align-items:center;gap:.6rem;font:700 1.15rem/1 var(--disp);letter-spacing:-.01em}
+.logo svg{width:34px;height:34px}
+.logo small{display:block;font:500 .65rem/1 var(--body);opacity:.7;margin-top:.2rem}
+
+/* Hero */
+.hero{position:relative;overflow:hidden;min-height:100svh;display:flex;flex-direction:column;
+background:radial-gradient(70% 50% at 85% 10%,rgba(47,75,255,.55),transparent 70%),radial-gradient(60% 45% at 5% 95%,rgba(255,91,31,.4),transparent 70%),var(--ink)}
+.hero::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(380px circle at var(--mx,70%) var(--my,30%),rgba(255,194,51,.16),transparent 70%)}
+.top{display:flex;justify-content:space-between;align-items:center;padding-block:1.1rem;position:relative;z-index:2}
+.chip{display:none;align-items:center;gap:.45rem;padding:.4rem .8rem;border-radius:99px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);font-size:.8rem;font-weight:500}
+.chip.on{display:inline-flex}
+.chip i{width:8px;height:8px;border-radius:50%;background:var(--sun);box-shadow:0 0 0 0 var(--sun);animation:ping 1.8s infinite}
+@keyframes ping{70%{box-shadow:0 0 0 9px transparent}100%{box-shadow:0 0 0 0 transparent}}
+.inf{position:absolute;right:-30%;top:12%;width:150%;max-width:980px;opacity:.95;pointer-events:none;transform:rotate(-8deg)}
+.inf path{fill:none;stroke-width:5;stroke-linecap:round}
+.inf .base{stroke:rgba(255,255,255,.1)}
+.inf .comet{stroke:url(#g);stroke-dasharray:.22 .78;animation:run 5s linear infinite;filter:drop-shadow(0 0 10px rgba(255,140,40,.9))}
+@keyframes run{to{stroke-dashoffset:-1}}
+.hero-body{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;justify-content:center;padding-block:1.5rem 3rem}
+h1{margin:0 0 1.4rem;font:800 clamp(3.2rem,16.5vw,8.6rem)/.86 var(--disp);font-stretch:75%;font-variation-settings:"wdth" 75;letter-spacing:-.015em;text-transform:uppercase}
+h1 .ln{display:block;overflow:hidden;padding-bottom:.04em}
+h1 .ln span{display:block;animation:rise .9s cubic-bezier(.2,.9,.2,1) both}
+h1 .ln:nth-child(2) span{animation-delay:.12s;color:transparent;-webkit-text-stroke:2px var(--chalk)}
+h1 .ln:nth-child(3) span{animation-delay:.26s;background:linear-gradient(95deg,var(--flame),var(--sun) 75%);-webkit-background-clip:text;background-clip:text;color:transparent}
+@keyframes rise{from{transform:translateY(105%)}}
+.lede{max-width:30rem;font-size:1.12rem;margin:0 0 1.8rem;opacity:.92}
+.lede b{font-family:var(--disp);font-weight:700;font-size:1.35rem;display:block;margin-bottom:.35rem;color:var(--sun)}
+.cta{--s:var(--flame);display:inline-flex;align-items:center;justify-content:center;gap:.7rem;width:100%;max-width:23rem;padding:1.15rem 1.6rem;border:0;border-radius:99px;cursor:pointer;
+font:800 1.1rem/1 var(--disp);letter-spacing:.04em;color:#fff;background:linear-gradient(95deg,var(--flame),#FF8A1F);box-shadow:0 10px 30px -8px rgba(255,91,31,.7),inset 0 1px 0 rgba(255,255,255,.35);transition:transform .2s,box-shadow .2s}
+.cta svg{width:22px;height:22px;transition:transform .25s}
+.cta:hover{transform:translateY(-2px);box-shadow:0 16px 36px -8px rgba(255,91,31,.85)}
+.cta:hover svg{transform:translateX(5px)}
+.cta:active{transform:scale(.97)}
+.cta[disabled]{opacity:.7;cursor:progress}
+.fine{font-size:.85rem;opacity:.7;margin:.9rem 0 0}
+
+/* Ticker */
+.tick{background:var(--sun);color:var(--ink);overflow:hidden;white-space:nowrap;transform:rotate(-1.2deg);margin:-1rem -2% 0;position:relative;z-index:3;box-shadow:0 8px 30px rgba(0,0,0,.35)}
+.tick div{display:inline-block;padding:.7rem 0;font:800 1.15rem/1 var(--disp);text-transform:uppercase;animation:slide 22s linear infinite}
+.tick span{margin:0 1.2rem}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+/* How it works */
+.how{padding:5.5rem 0 4rem}
+h2{font:800 clamp(2.1rem,9vw,3.6rem)/.95 var(--disp);font-variation-settings:"wdth" 80;margin:0 0 .8rem;letter-spacing:-.01em}
+.sub{max-width:30rem;opacity:.8;margin:0 0 2.2rem}
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:1.1rem}
+.steps li{display:grid;grid-template-columns:4.2rem 1fr;gap:1rem;align-items:start;padding:1.2rem 1.2rem 1.3rem 1rem;border-radius:1.4rem;background:linear-gradient(135deg,rgba(255,255,255,.08),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.12);transition:transform .25s,border-color .25s}
+.steps li:hover{transform:translateX(6px);border-color:var(--flame)}
+.steps .n{font:800 4rem/.8 var(--disp);color:transparent;-webkit-text-stroke:2px var(--flame)}
+.steps h3{font:700 1.3rem/1.15 var(--disp);margin:.1rem 0 .3rem}
+.steps p{margin:0;opacity:.8}
+.prizes{margin-top:2.2rem;display:grid;gap:.8rem;grid-template-columns:1fr 1fr}
+.prizes div{padding:1rem;border-radius:1.2rem;background:rgba(255,194,51,.1);border:1px dashed rgba(255,194,51,.5)}
+.prizes div:first-child{grid-column:1/-1;background:linear-gradient(95deg,var(--flame),var(--sun));color:var(--ink);border:0}
+.prizes b{display:block;font:800 1.9rem/1 var(--disp)}
+.prizes span{font-size:.9rem;font-weight:500}
+
+/* Form */
+.enter{background:var(--form-bg);color:var(--form-ink);padding:4.5rem 0 4.5rem;border-radius:2rem 2rem 0 0;position:relative;z-index:4}
+.enter .sub{opacity:.75}
+.bar{height:6px;border-radius:9px;background:var(--line);overflow:hidden;margin:0 0 .4rem}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--flame),var(--sun));transition:width .4s cubic-bezier(.3,.9,.3,1)}
+.bartxt{font-size:.85rem;color:var(--muted);margin:0 0 1.6rem;font-weight:500}
+form{display:grid;gap:1.15rem;max-width:34rem}
+.row{display:grid;gap:1.15rem}
+@media(min-width:480px){.row{grid-template-columns:1fr 1fr}}
+.f label,.f .lab{display:block;font-weight:700;font-size:.92rem;margin-bottom:.4rem}
+.f input[type=text],.f input[type=email],.f input[type=tel],.f select{width:100%;min-height:54px;padding:.8rem 1rem;font-size:1rem;border-radius:1rem;border:2px solid var(--line);background:var(--field);transition:border-color .2s,box-shadow .2s}
+.f select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,currentColor 50%),linear-gradient(-45deg,transparent 50%,currentColor 50%);background-position:calc(100% - 22px) 50%,calc(100% - 16px) 50%;background-size:6px 6px;background-repeat:no-repeat}
+.f input:focus,.f select:focus{outline:0;border-color:var(--blue);box-shadow:0 0 0 4px rgba(47,75,255,.2)}
+.f.ok input,.f.ok select{border-color:#1faa59}
+.f.bad input,.f.bad select,.f.bad .frame{border-color:var(--err)}
+.f.bad{animation:shake .35s}
+@keyframes shake{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.err{display:block;min-height:0;color:var(--err);font-size:.85rem;font-weight:500;margin-top:.3rem}
+.hint{font-size:.82rem;color:var(--muted);margin-top:.3rem}
+.frame{--c:var(--flame);position:relative;aspect-ratio:4/5;max-height:440px;width:100%;border-radius:1.4rem;border:2px dashed var(--line);background:var(--field);display:grid;place-items:center;overflow:hidden;cursor:pointer;text-align:center;padding:0}
+.frame::after{content:"";position:absolute;inset:12px;pointer-events:none;
+background:linear-gradient(var(--c),var(--c)) 0 0/28px 4px,linear-gradient(var(--c),var(--c)) 0 0/4px 28px,linear-gradient(var(--c),var(--c)) 100% 0/28px 4px,linear-gradient(var(--c),var(--c)) 100% 0/4px 28px,linear-gradient(var(--c),var(--c)) 0 100%/28px 4px,linear-gradient(var(--c),var(--c)) 0 100%/4px 28px,linear-gradient(var(--c),var(--c)) 100% 100%/28px 4px,linear-gradient(var(--c),var(--c)) 100% 100%/4px 28px;background-repeat:no-repeat;transition:inset .3s}
+.frame:hover::after{inset:6px}
+.frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:none}
+.frame.has{border-style:solid;border-color:var(--flame);cursor:default}
+.frame.has img{display:block}
+.frame.has .empty{display:none}
+.empty{padding:1.5rem;display:grid;gap:.5rem;justify-items:center}
+.empty svg{width:54px;height:54px;color:var(--flame)}
+.empty b{font:700 1.2rem/1.2 var(--disp)}
+.empty span{font-size:.88rem;color:var(--muted)}
+.pbtns{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.7rem}
+.ghost{flex:1;min-width:9rem;min-height:46px;padding:.6rem 1rem;border-radius:99px;border:2px solid var(--form-ink);background:transparent;font-weight:700;cursor:pointer;transition:background .2s,color .2s}
+.ghost:hover{background:var(--form-ink);color:var(--form-bg)}
+.pbtns .when-has{display:none}.has-photo .pbtns .when-has{display:inline-block}.has-photo .pbtns .when-no{display:none}
+.chk{display:flex;gap:.7rem;align-items:flex-start;font-size:.9rem}
+.chk input{width:22px;height:22px;margin-top:.1rem;accent-color:var(--flame);flex:none}
+.chk a,.link{color:inherit;font-weight:700;text-decoration:underline;background:none;border:0;padding:0;cursor:pointer}
+.enter .cta{max-width:none}
+
+/* Success */
+.win{display:none;background:linear-gradient(160deg,var(--ink2),var(--ink));padding:5rem 0;text-align:center;position:relative;z-index:4;border-radius:2rem 2rem 0 0;overflow:hidden}
+.win .wrap{max-width:34rem}
+.win h2{font-size:clamp(3.4rem,18vw,6.5rem);background:linear-gradient(95deg,var(--flame),var(--sun));-webkit-background-clip:text;background-clip:text;color:transparent;text-transform:uppercase;margin-bottom:.6rem}
+.polaroid{width:min(62%,210px);margin:1.6rem auto;background:#fff;padding:.55rem .55rem 1.9rem;border-radius:6px;transform:rotate(-4deg);box-shadow:0 18px 40px rgba(0,0,0,.5);animation:pop .7s cubic-bezier(.2,1.4,.4,1) both .2s}
+.polaroid img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover}
+@keyframes pop{from{transform:scale(.3) rotate(-20deg);opacity:0}}
+.ref{display:flex;align-items:center;justify-content:space-between;gap:.8rem;padding:.9rem 1rem;border-radius:1.2rem;border:2px dashed var(--sun);margin:1.4rem 0;text-align:left}
+.ref small{display:block;opacity:.7;font-size:.78rem}
+.ref code{font:800 1.4rem/1.1 var(--disp);letter-spacing:.06em;color:var(--sun);word-break:break-all}
+.ref button{background:var(--sun);color:var(--ink);border:0;border-radius:99px;padding:.6rem 1rem;font-weight:800;cursor:pointer;flex:none}
+.share{display:grid;gap:.7rem}
+.share a,.share button{display:flex;justify-content:center;align-items:center;gap:.6rem;min-height:54px;border-radius:99px;font-weight:800;text-decoration:none;color:#fff;border:0;cursor:pointer;font-size:1rem}
+.wa{background:#1faa59}.xx{background:#000;border:1px solid rgba(255,255,255,.3)!important}.nat{background:transparent;border:2px solid var(--chalk)!important}
+.cf{position:absolute;top:-10px;left:var(--x);width:10px;height:16px;background:var(--c);animation:fall var(--d) ease-in forwards;pointer-events:none;z-index:9}
+@keyframes fall{to{transform:translate(var(--dx),110vh) rotate(var(--r));opacity:.9}}
+
+/* Footer + dialog */
+footer{background:var(--ink);padding:3rem 0 2.5rem;border-top:1px solid rgba(255,255,255,.1)}
+footer .wrap{display:grid;gap:1.4rem}
+footer p{margin:0;opacity:.7;font-size:.88rem}
+.flinks{display:flex;gap:1.4rem;flex-wrap:wrap}
+.flinks button{color:var(--chalk);font-weight:700}
+dialog{width:min(92vw,34rem);max-height:80vh;overflow:auto;border:0;border-radius:1.4rem;padding:1.6rem;background:var(--form-bg);color:var(--form-ink)}
+dialog::backdrop{background:rgba(5,8,30,.75)}
+dialog h3{font:800 1.6rem/1 var(--disp);margin:0 0 1rem}
+dialog li{margin-bottom:.5rem;font-size:.95rem}
+dialog .ghost{width:100%;margin-top:1rem}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+@media(min-width:760px){.hero-body{padding-block:2rem 5rem}.steps{grid-template-columns:repeat(3,1fr)}.steps li{grid-template-columns:1fr}.steps li:hover{transform:translateY(-6px)}.prizes{grid-template-columns:2fr 1fr 1fr}.prizes div:first-child{grid-column:auto}.inf{right:-8%;top:8%;width:75%}.cta{width:auto}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<section class="hero" id="hero">
+  <svg class="inf" viewBox="0 0 200 100" aria-hidden="true">
+    <defs><linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#FF5B1F"/><stop offset="1" stop-color="#FFC233"/></linearGradient></defs>
+    <path class="base" d="M100 50C130 10 190 10 190 50C190 90 130 90 100 50C70 10 10 10 10 50C10 90 70 90 100 50Z"/>
+    <path class="comet" pathLength="1" d="M100 50C130 10 190 10 190 50C190 90 130 90 100 50C70 10 10 10 10 50C10 90 70 90 100 50Z"/>
+  </svg>
+  <div class="wrap top">
+    <span class="logo" aria-label="Parallex Bank">
+      <svg viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="11" fill="#FF5B1F"/><path d="M13 31V9h8.5a6.5 6.5 0 0 1 0 13H17" fill="none" stroke="#fff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>Parallex Bank<small>Be Limitless</small></span>
+    </span>
+    <span class="chip" id="chip"><i></i><span id="chipTxt"></span></span>
+  </div>
+  <div class="wrap hero-body">
+    <h1 aria-label="Believe. Become. Be Limitless."><span class="ln"><span>Believe.</span></span><span class="ln"><span>Become.</span></span><span class="ln"><span>Be Limitless.</span></span></h1>
+    <p class="lede"><b>There’s more to you. Let’s see it.</b>Strike a pose at our pop-up, show us who you’re becoming, and your next big moment could start right here. Cash prizes and gifts are waiting.</p>
+    <div><button class="cta" id="go" type="button">TAKE YOUR SHOT <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+    <p class="fine">Takes about a minute. No account needed.</p></div>
+  </div>
+</section>
+
+<div class="tick" aria-hidden="true"><div><span>Believe</span>✦<span>Become</span>✦<span>Be Limitless</span>✦<span>Believe</span>✦<span>Become</span>✦<span>Be Limitless</span>✦<span>Believe</span>✦<span>Become</span>✦<span>Be Limitless</span>✦<span>Believe</span>✦<span>Become</span>✦<span>Be Limitless</span>✦</div></div>
+
+<section class="how">
+  <div class="wrap">
+    <h2>Three moves. Zero limits.</h2>
+    <p class="sub">The shortest route from “what if” to “I’m in the draw.”</p>
+    <ol class="steps">
+      <li><span class="n">1</span><div><h3>Enter your details</h3><p>Tell us who’s stepping up. Name, email and phone. That’s it.</p></div></li>
+      <li><span class="n">2</span><div><h3>Upload your pop-up selfie</h3><p>Snap your boldest shot at the Parallex pop-up, then drop it in.</p></div></li>
+      <li><span class="n">3</span><div><h3>Submit your entry</h3><p>Hit send, grab your entry reference, and you’re officially in.</p></div></li>
+    </ol>
+    <div class="prizes" aria-label="Prizes">
+      <div><b>₦1,000,000</b><span>Grand prize, cash</span></div>
+      <div><b>10 × ₦100,000</b><span>Cash winners</span></div>
+      <div><b>50 gift packs</b><span>Limitless goodies</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="enter" id="enter">
+  <div class="wrap">
+    <h2>Your shot starts here.</h2>
+    <p class="sub">Fill in the details, add your selfie, and you’re in the draw.</p>
+    <div class="bar" aria-hidden="true"><i id="barFill"></i></div>
+    <p class="bartxt" id="barTxt" aria-live="polite">0 of 6 ready</p>
+    <form id="form" novalidate>
+      <div class="row">
+        <div class="f" data-f="fn"><label for="fn">First name</label><input id="fn" type="text" autocomplete="given-name" placeholder="Tobi"><span class="err" id="e-fn"></span></div>
+        <div class="f" data-f="ln"><label for="ln">Last name</label><input id="ln" type="text" autocomplete="family-name" placeholder="Adeyemi"><span class="err" id="e-ln"></span></div>
+      </div>
+      <div class="f" data-f="em"><label for="em">Email</label><input id="em" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com"><span class="err" id="e-em"></span></div>
+      <div class="f" data-f="ph"><label for="ph">Phone number</label><input id="ph" type="tel" inputmode="tel" autocomplete="tel" placeholder="0803 123 4567"><span class="err" id="e-ph"></span></div>
+      <div class="f" data-f="loc"><label for="loc">City / pop-up location</label>
+        <select id="loc"><option value="">Where are you today?</option></select><span class="err" id="e-loc"></span></div>
+      <div class="f" data-f="photo" id="photoBox"><span class="lab" id="plab">Your pop-up selfie</span>
+        <button type="button" class="frame" id="frame" aria-labelledby="plab"><img id="pimg" alt="Your selfie preview">
+          <span class="empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13.5" r="3.8"/></svg><b>Show us your best you</b><span>Tap to add your pop-up selfie</span></span></button>
+        <div class="pbtns"><button type="button" class="ghost when-no" id="bCam">Take a selfie</button><button type="button" class="ghost when-no" id="bGal">Choose from gallery</button><button type="button" class="ghost when-has" id="bRep">Replace photo</button><button type="button" class="ghost when-has" id="bRem">Remove</button></div>
+        <input class="sr" id="fCam" type="file" accept="image/*" capture="user" tabindex="-1" aria-hidden="true"><input class="sr" id="fGal" type="file" accept="image/*" tabindex="-1" aria-hidden="true">
+        <span class="hint">JPG, PNG or HEIC. We’ll resize it for you.</span><span class="err" id="e-photo"></span></div>
+      <div class="f" data-f="agree"><label class="chk"><input type="checkbox" id="agree"><span>I’m 18 or older and I agree to the <button type="button" class="link" data-doc="tc">Terms &amp; Conditions</button> and <button type="button" class="link" data-doc="pp">Privacy Policy</button>.</span></label><span class="err" id="e-agree"></span></div>
+      <button class="cta" id="send" type="submit">SUBMIT MY ENTRY <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+    </form>
+  </div>
+</section>
+
+<section class="win" id="win" aria-live="polite" tabindex="-1">
+  <div class="wrap">
+    <h2>You’re in.</h2>
+    <p id="winMsg"></p>
+    <div class="polaroid"><img id="winImg" alt="Your entry selfie"></div>
+    <div class="ref"><div><small>Your entry reference</small><code id="refTxt"></code></div><button type="button" id="copy">Copy</button></div>
+    <p>Keep this safe. Winners are contacted by email and phone, so keep an eye on your inbox.</p>
+    <div class="share"><a class="wa" id="shWa" target="_blank" rel="noopener">Share on WhatsApp</a><a class="xx" id="shX" target="_blank" rel="noopener">Share on X</a><button class="nat" id="shNat" type="button" hidden>More ways to share</button></div>
+    <p style="margin-top:1.4rem;font-size:.9rem;opacity:.75">Use #BeLimitless and tag @ParallexBank to show the world your shot.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span class="logo"><svg viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="11" fill="#FF5B1F"/><path d="M13 31V9h8.5a6.5 6.5 0 0 1 0 13H17" fill="none" stroke="#fff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Parallex Bank<small>Believe. Become. Be Limitless.</small></span></span>
+    <div class="flinks"><button type="button" class="link" data-doc="tc">Terms &amp; Conditions</button><button type="button" class="link" data-doc="pp">Privacy Policy</button></div>
+    <p>© 2026 Parallex Bank Limited. All rights reserved. Campaign terms apply. Parallex Bank will never ask for your PIN, password, OTP or BVN.</p>
+  </div>
+</footer>
+
+<dialog id="dlg"><h3 id="dT"></h3><ul id="dB"></ul><button class="ghost" type="button" id="dX">Close</button></dialog>
+
+<script>
+(function(){
+"use strict";
+var $=function(s){return document.querySelector(s)};
+var LOCS=[["lekki","LEK","Lagos · Lekki Phase 1"],["ikeja","IKJ","Lagos · Ikeja"],["vi","VIC","Lagos · Victoria Island"],["yaba","YAB","Lagos · Yaba"],["surulere","SUR","Lagos · Surulere"],["wuse","WUS","Abuja · Wuse 2"],["ph","PHC","Port Harcourt · GRA"],["ibadan","IBD","Ibadan · Bodija"],["benin","BEN","Benin City · Ring Road"],["other","OTH","Other city"]];
+var DOCS={tc:["Terms & Conditions",["Open to Nigerian residents aged 18 or older. One entry per person.","Entries open and close on the dates announced by Parallex Bank (dates to be confirmed).","Your selfie must be taken at a Parallex Bank pop-up and must not contain offensive or unlawful content.","Winners are chosen at random from valid entries and contacted by email and phone. Prizes are not transferable or exchangeable for other value.","Parallex Bank will never ask for your PIN, password, OTP or BVN to claim a prize.","Parallex Bank may disqualify entries that break these terms. Full terms will be published before launch."]],
+pp:["Privacy Policy",["We collect your name, email, phone number, location and photo only to run this campaign and contact winners.","We process your data under the Nigeria Data Protection Act 2023.","Your photo will not be published without your separate consent.","We don’t sell your data. We keep it only as long as the campaign and legal requirements need.","You can ask to access, correct or delete your data by contacting Parallex Bank’s data protection officer (contact to be confirmed)."]]};
+var sel=$("#loc"),photo=null,src="direct";
+
+/* populate pop-up locations */
+LOCS.forEach(function(l){var o=document.createElement("option");o.value=l[0];o.textContent=l[2];sel.appendChild(o)});
+
+/* QR tracking: each pop-up QR points to the page link + #slug (e.g. #lekki) */
+function readQR(){
+  var h=decodeURIComponent(location.hash.slice(1)).toLowerCase().replace(/[^a-z0-9-]/g,"");
+  var m=LOCS.filter(function(l){return l[0]===h})[0];
+  if(m){sel.value=m[0];src="qr:"+m[0];$("#chipTxt").textContent="You’re at the "+m[2].split(" · ").pop()+" pop-up";$("#chip").classList.add("on")}
+  else if(h){src="qr:"+h}
+  prog();
+}
+window.addEventListener("hashchange",readQR);
+
+/* hero pointer glow */
+var hero=$("#hero");
+if(matchMedia("(pointer:fine)").matches){hero.addEventListener("pointermove",function(e){var r=hero.getBoundingClientRect();hero.style.setProperty("--mx",(e.clientX-r.left)+"px");hero.style.setProperty("--my",(e.clientY-r.top)+"px")})}
+$("#go").addEventListener("click",function(){$("#enter").scrollIntoView({behavior:"smooth"});setTimeout(function(){$("#fn").focus({preventScroll:true})},700)});
+
+/* validation */
+var R={
+ fn:function(v){return /^[A-Za-z\u00C0-\u024F'’\- ]{2,40}$/.test(v.trim())?"":"Add your first name (letters only)."},
+ ln:function(v){return /^[A-Za-z\u00C0-\u024F'’\- ]{2,40}$/.test(v.trim())?"":"Add your last name (letters only)."},
+ em:function(v){return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim())?"":"Enter a valid email, like you@example.com."},
+ ph:function(v){return /^(?:\+?234|0)[789][01]\d{8}$/.test(v.replace(/[\s-]/g,""))?"":"Enter a valid Nigerian number, like 0803 123 4567."},
+ loc:function(v){return v?"":"Pick the pop-up or city you’re in."},
+ photo:function(){return photo?"":"Add your selfie to complete your entry."},
+ agree:function(){return $("#agree").checked?"":"Tick the box to confirm you agree."}
+};
+function val(k){return k==="photo"||k==="agree"?"":$("#"+k).value}
+function show(k,msg){var box=document.querySelector('[data-f="'+k+'"]');box.classList.remove("bad","ok");void box.offsetWidth;
+ if(msg){box.classList.add("bad")}else if(k!=="agree"&&k!=="photo"){box.classList.add("ok")}
+ $("#e-"+k).textContent=msg;var inp=$("#"+k);if(inp&&inp.setAttribute)inp.setAttribute("aria-invalid",msg?"true":"false")}
+function check(k,loud){var m=R[k](val(k));if(loud)show(k,m);return !m}
+function prog(){var n=["fn","ln","em","ph","loc","photo"].filter(function(k){return !R[k](val(k))}).length;
+ $("#barFill").style.width=(n/6*100)+"%";$("#barTxt").textContent=n===6?"All set. Hit submit!":n+" of 6 ready"}
+["fn","ln","em","ph"].forEach(function(k){var i=$("#"+k);i.addEventListener("blur",function(){if(i.value)check(k,true);prog()});i.addEventListener("input",function(){if(i.closest(".f").classList.contains("bad"))check(k,true);prog()})});
+sel.addEventListener("change",function(){check("loc",true);prog()});
+$("#agree").addEventListener("change",function(){check("agree",true)});
+
+/* photo upload, preview and replace */
+function pick(inp){inp.value="";inp.click()}
+$("#frame").addEventListener("click",function(){if(!photo)pick($("#fGal"))});
+$("#bGal").addEventListener("click",function(){pick($("#fGal"))});
+$("#bCam").addEventListener("click",function(){pick($("#fCam"))});
+$("#bRep").addEventListener("click",function(){pick($("#fGal"))});
+$("#bRem").addEventListener("click",function(){photo=null;$("#frame").classList.remove("has");$("#photoBox").classList.remove("has-photo");$("#pimg").removeAttribute("src");prog()});
+["fGal","fCam"].forEach(function(id){$("#"+id).addEventListener("change",function(e){var f=e.target.files[0];if(f)load(f)})});
+function load(f){
+ if(f.type&&f.type.indexOf("image/")!==0){show("photo","That isn’t an image. Choose a JPG, PNG or HEIC photo.");return}
+ if(f.size>20e6){show("photo","That photo is over 20 MB. Try a smaller one.");return}
+ var u=URL.createObjectURL(f),im=new Image();
+ im.onload=function(){var s=Math.min(1,720/Math.max(im.width,im.height)),c=document.createElement("canvas");c.width=Math.round(im.width*s);c.height=Math.round(im.height*s);
+  c.getContext("2d").drawImage(im,0,0,c.width,c.height);photo=c.toDataURL("image/jpeg",.68);URL.revokeObjectURL(u);
+  $("#pimg").src=photo;$("#frame").classList.add("has");$("#photoBox").classList.add("has-photo");show("photo","");prog()};
+ im.onerror=function(){URL.revokeObjectURL(u);show("photo","We couldn’t read that file. Try another photo.")};
+ im.src=u}
+
+/* submit */
+function ref(code){var a="ABCDEFGHJKLMNPQRSTUVWXYZ23456789",s="";for(var i=0;i<5;i++)s+=a[Math.floor(Math.random()*a.length)];return "PLX-"+code+"-"+s}
+function save(e){
+ try{localStorage.setItem("plx:"+e.ref,JSON.stringify(e))}catch(x){}
+ return new Promise(function(done){
+  var t=setTimeout(done,5000);
+  try{Promise.all([claude.use("db"),claude.use("user")]).then(function(r){var db=r[0],u=r[1];if(!db||!u){clearTimeout(t);return done()}
+   return u.id().then(function(id){return db.doc("entries/"+id).set(e)}).then(function(){clearTimeout(t);done()})}).catch(function(){clearTimeout(t);done()})}
+  catch(x){clearTimeout(t);done()}})}
+$("#form").addEventListener("submit",function(ev){
+ ev.preventDefault();
+ var bad=Object.keys(R).filter(function(k){return !check(k,true)});
+ if(bad.length){var b=document.querySelector('[data-f="'+bad[0]+'"]');b.scrollIntoView({behavior:"smooth",block:"center"});var f=b.querySelector("input,select,button");if(f)f.focus({preventScroll:true});return}
+ var btn=$("#send"),l=LOCS.filter(function(x){return x[0]===sel.value})[0];btn.disabled=true;btn.firstChild.nodeValue="SENDING YOUR SHOT… ";
+ var entry={ref:ref(l[1]),firstName:$("#fn").value.trim(),lastName:$("#ln").value.trim(),email:$("#em").value.trim().toLowerCase(),
+  phone:$("#ph").value.replace(/[\s-]/g,"").replace(/^(\+?234)/,"0"),location:l[0],source:src,photo:photo,createdAt:new Date().toISOString()};
+ save(entry).then(function(){win(entry)})});
+
+/* success */
+function win(e){
+ $("#enter").style.display="none";var w=$("#win");w.style.display="block";
+ $("#winMsg").textContent="Entry confirmed, "+e.firstName+". Your next big moment could start right here. Believe it. Become it.";
+ $("#winImg").src=e.photo;$("#refTxt").textContent=e.ref;
+ var url=location.origin+location.pathname,txt="I just took my shot at the Parallex Bank #BeLimitless pop-up. There’s more to me. Let’s see it! Entry "+e.ref;
+ $("#shWa").href="https://wa.me/?text="+encodeURIComponent(txt+" "+url);
+ $("#shX").href="https://twitter.com/intent/tweet?text="+encodeURIComponent(txt)+"&url="+encodeURIComponent(url);
+ if(navigator.share){var n=$("#shNat");n.hidden=false;n.onclick=function(){navigator.share({title:"BE LIMITLESS",text:txt,url:url}).catch(function(){})}}
+ $("#copy").onclick=function(){var b=this;try{navigator.clipboard.writeText(e.ref)}catch(x){}b.textContent="Copied";setTimeout(function(){b.textContent="Copy"},1600)};
+ w.scrollIntoView();w.focus({preventScroll:true});confetti(w)}
+function confetti(p){if(matchMedia("(prefers-reduced-motion:reduce)").matches)return;
+ var cs=["#FF5B1F","#FFC233","#2F4BFF","#FFF4E6"];
+ for(var i=0;i<46;i++){var d=document.createElement("i");d.className="cf";var s=d.style;
+  s.setProperty("--x",Math.random()*100+"%");s.setProperty("--c",cs[i%4]);s.setProperty("--d",(1.6+Math.random()*1.6)+"s");
+  s.setProperty("--dx",(Math.random()*160-80)+"px");s.setProperty("--r",(Math.random()*900-450)+"deg");p.appendChild(d);
+  setTimeout(function(n){return function(){n.remove()}}(d),3500)}}
+
+/* legal dialog */
+var dlg=$("#dlg");
+document.addEventListener("click",function(e){var b=e.target.closest("[data-doc]");if(!b)return;var d=DOCS[b.dataset.doc];$("#dT").textContent=d[0];
+ $("#dB").innerHTML="";d[1].forEach(function(t){var li=document.createElement("li");li.textContent=t;$("#dB").appendChild(li)});dlg.showModal()});
+$("#dX").addEventListener("click",function(){dlg.close()});
+dlg.addEventListener("click",function(e){if(e.target===dlg)dlg.close()});
+
+readQR();
+})();
+</script>
+</body>
+</html>
